@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Kalkulator</title>
+
+    <style>
+
+        body {
+            background-color: #eeeeee;
+            font-family: Arial;
+            text-align: center;
+        }
+
+        .kalkulator {
+            background-color: #333;
+            width: 300px;
+            margin: 100px auto;
+	    padding: 15px;
+	    border-radius: 10px;
+        }
+
+        #ekran {
+            background-color: white;
+            height: 50px;
+            font-size: 25px;
+            text-align: right;
+            padding: 10px;
+            margin-bottom: 10px;
+	    border-radius 5px;
+        }
+
+        button {
+            width: 55px;
+            height: 50px;
+            margin: 2px;
+            font-size: 20px;
+            cursor: pointer;
+	    border: none;
+	    
+        }
+
+        .operator {
+            background-color: orange;
+        }
+
+        .rownosc {
+            background-color: lightgreen;
+        }
+
+        .czyszczenie {
+            background-color: red;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="kalkulator">
+
+        <div id="ekran">0</div>
+
+        <button class="czyszczenie" onclick="czysc()">C</button>
+        <button onclick="usun()">←</button>
+        <button onclick="dodaj('(')">(</button>
+        <button onclick="dodaj(')')">)</button>
+
+        <br>
+
+        <button onclick="dodaj('7')">7</button>
+        <button onclick="dodaj('8')">8</button>
+        <button onclick="dodaj('9')">9</button>
+        <button class="operator" onclick="dodaj('/')">÷</button>
+
+        <br>
+
+        <button onclick="dodaj('4')">4</button>
+        <button onclick="dodaj('5')">5</button>
+        <button onclick="dodaj('6')">6</button>
+        <button class="operator" onclick="dodaj('*')">×</button>
+
+        <br>
+
+        <button onclick="dodaj('1')">1</button>
+        <button onclick="dodaj('2')">2</button>
+        <button onclick="dodaj('3')">3</button>
+        <button class="operator" onclick="dodaj('-')">-</button>
+
+        <br>
+
+        <button onclick="dodaj('0')">0</button>
+        <button onclick="dodaj('.')">.</button>
+        <button class="rownosc" onclick="oblicz()">=</button>
+        <button class="operator" onclick="dodaj('+')">+</button>
+
+    </div>
+
+    <script>
+
+        function dodaj(znak) {
+
+            let ekran = document.getElementById("ekran");
+
+            if (ekran.innerHTML == "0") {
+                ekran.innerHTML = znak;
+            }
+            else {
+                ekran.innerHTML = ekran.innerHTML + znak;
+            }
+
+        }
+
+
+        function czysc() {
+
+            document.getElementById("ekran").innerHTML = "0";
+
+        }
+
+
+        function usun() {
+
+            let ekran = document.getElementById("ekran");
+
+            ekran.innerHTML = ekran.innerHTML.slice(0, -1);
+
+            if (ekran.innerHTML == "") {
+                ekran.innerHTML = "0";
+            }
+
+        }
+
+
+        function oblicz() {
+
+            let ekran = document.getElementById("ekran");
+
+            let dzialanie = ekran.innerHTML;
+
+            if (dzialanie == "") {
+                ekran.innerHTML = "Wypisz dzialanie";
+                return;
+            }
+
+            try {
+
+                let wynik = eval(dzialanie);
+
+                if (!isFinite(wynik)) {
+                    ekran.innerHTML = "Nie mozna dzielic przez zero";
+                }
+                else {
+                    ekran.innerHTML = wynik;
+                }
+
+            }
+
+            catch {
+                ekran.innerHTML = "Bledne dzialanie";
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>
