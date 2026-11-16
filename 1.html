@@ -188,19 +188,17 @@
 
         let poprawny = true;
 
-        // Pobieranie pól
         let imie = document.getElementById("imie");
         let nazwisko = document.getElementById("nazwisko");
         let email = document.getElementById("email");
         let telefon = document.getElementById("telefon");
         let wojewodztwo = document.getElementById("wojewodztwo");
-
-        // Usuwanie poprzednich komunikatów
+		
         document.querySelectorAll(".komunikat").forEach(function(element) {
             element.remove();
         });
 
-        // Sprawdzanie pól
+        
         let pola = [imie, nazwisko, email, telefon, wojewodztwo];
 
         for (let i = 0; i < pola.length; i++) {
@@ -273,7 +271,6 @@
             poprawny = false;
         }
 
-        // Wynik walidacji
         if (poprawny == true) {
 
             alert("Formularz został poprawnie wypełniony!");
