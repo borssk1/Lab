@@ -1,11 +1,9 @@
 <?php
 session_start();
 
-// Dane do logowania zapisane na sztywno w kodzie
 $poprawny_login = "admin";
 $poprawne_haslo = "admin";
 
-// Jeśli użytkownik jest już zalogowany, przenosimy go od razu do panelu
 if (isset($_SESSION["zalogowany"])) {
     header("Location: panel.php");
     exit;
@@ -13,7 +11,6 @@ if (isset($_SESSION["zalogowany"])) {
 
 $blad = "";
 
-// Sprawdzamy dane dopiero po wysłaniu formularza
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $login = $_POST["login"];
@@ -21,7 +18,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($login == $poprawny_login && $haslo == $poprawne_haslo) {
 
-        // Zapisujemy w sesji informację, że użytkownik jest zalogowany
         $_SESSION["zalogowany"] = true;
         $_SESSION["login"] = $login;
 
