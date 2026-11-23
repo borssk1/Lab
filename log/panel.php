@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Ochrona strony: niezalogowany użytkownik wraca na stronę logowania
 if (!isset($_SESSION["zalogowany"])) {
     header("Location: login.php");
     exit;
